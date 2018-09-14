@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Veículos</title>
+</h:head>
+
+<h:body>
+
+	<ui:include src="/menu.xhtml" />
+
+	<h:form style="margin-top:2%; margin-left:2%;">
+		<h1>Veículos</h1>
+		<h:commandButton action="manveiculos" value="Novo Veículo" />
+
+		<br />
+		<br />
+
+		<h:dataTable value="#{veiculoBean.veiculos}" var="v" border="3"
+			cellpadding="6">
+
+			<f:facet name="header">
+	     	   Lista veículos cadastrados
+	     	</f:facet>
+
+			<h:column>
+				<f:facet name="header">Marca e Modelo</f:facet>
+				<h:outputText value="#{v.marcaModelo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Placa</f:facet>
+				<h:outputText value="#{v.placa}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Valor Diária</f:facet>
+				<h:outputText value="#{v.valorDiaria}">
+					<f:convertNumber type="currency" minFractionDigits="2" locale="pt_BR" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink action="manveiculos" title="Editar" immediate="true">
+					<h:graphicImage value="/resources/img/editar.png" />
+					<f:setPropertyActionListener target="#{veiculoBean.veiculo}"
+						value="#{v}" />
+				</h:commandLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink action="#{veiculoBean.remover()}" title="Excluir"
+					immediate="true">
+					<f:setPropertyActionListener target="#{veiculoBean.veiculo}"
+						value="#{v}" />
+					<h:graphicImage value="/resources/img/excluir.png" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+
+</html>

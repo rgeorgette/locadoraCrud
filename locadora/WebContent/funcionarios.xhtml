@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Funcionários</title>
+</h:head>
+
+<h:body>
+
+	<ui:include src="/menu.xhtml" />
+
+	<h:form style="margin-top:2%; margin-left:2%;">
+		<h1>Funcionários</h1>
+		<h:commandButton action="manfuncionarios" value="Novo Funcionário" />
+		
+		<br/>
+		<br/>
+
+		<h:dataTable value="#{funcionarioBean.funcionarios}" var="f" border="3"
+			cellpadding="6">
+
+			<f:facet name="header">
+	     	   Lista funcionários cadastrados
+	     	</f:facet>
+
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{f.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink action="manfuncionarios" title="Editar" immediate="true">
+					<h:graphicImage value="/resources/img/editar.png" />
+					<f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{f}"/>
+				</h:commandLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink action="#{funcionarioBean.remover()}" title="Excluir"
+					immediate="true">
+					<f:setPropertyActionListener target="#{funcionarioBean.funcionario}"
+						value="#{f}" />
+					<h:graphicImage value="/resources/img/excluir.png" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+
+</html>

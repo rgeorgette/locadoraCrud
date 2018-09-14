@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Locação</title>
+</h:head>
+
+<h:body>
+
+	<ui:include src="/menu.xhtml" />
+
+	<h:form style="margin-top:2%; margin-left:2%;">
+		<h1>Locação</h1>
+		<h:commandButton action="manlocacao" value="Nova Locação" />
+
+		<br />
+		<br />
+
+		<h:dataTable value="#{locacaoBean.locacoes}" var="l" border="3"
+			cellpadding="6">
+
+			<f:facet name="header">
+	     	   Lista Locações
+	     	</f:facet>
+
+			<h:column>
+				<f:facet name="header">Data Início</f:facet>
+				<h:outputText value="#{l.dataInicio}">
+					<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+						timeZone="GMT-03:00" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Data Fim</f:facet>
+				<h:outputText value="#{l.dataFim}">
+					<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+						timeZone="GMT-03:00" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Cliente</f:facet>
+				<h:outputText value="#{l.cliente.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Funcionário</f:facet>
+				<h:outputText value="#{l.funcionario.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Veículo</f:facet>
+				<h:outputText value="#{l.veiculo.marcaModelo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Valor Total</f:facet>
+				<h:outputText value="#{l.valorTotal}">
+					<f:convertNumber type="currency" minFractionDigits="2" locale="pt_BR" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink action="manlocacao" title="Editar" immediate="true">
+					<h:graphicImage value="/resources/img/editar.png" />
+					<f:setPropertyActionListener target="#{locacaoBean.locacao}" value="#{l}" />
+				</h:commandLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink action="#{locacaoBean.remover()}" title="Excluir" immediate="true">
+					<f:setPropertyActionListener target="#{locacaoBean.locacao}" value="#{l}" />
+					<h:graphicImage value="/resources/img/excluir.png" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cadastro de veículo</title>
+</h:head>
+
+<h:body>
+
+	<h:form style="margin-top:2%; margin-left:2%;">
+		<h1>Veículo</h1>
+
+		<h:inputHidden value="#{veiculoBean.veiculo.id}" />
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Marca e Modelo: " />
+			<h:inputText size="50" value="#{veiculoBean.veiculo.marcaModelo}" />
+
+			<h:outputLabel value="Placa: " />
+			<h:inputText size="15" value="#{veiculoBean.veiculo.placa}" />
+
+			<h:outputLabel value="Valor Diária: " />
+			<h:inputText size="15" value="#{veiculoBean.veiculo.valorDiaria}">
+				<f:convertNumber minFractionDigits="2" />
+			</h:inputText>
+
+			<h:commandButton action="#{veiculoBean.salvar()}" value="Salvar" />
+			<h:commandButton action="veiculos" value="Cancelar" />
+
+		</h:panelGrid>
+
+	</h:form>
+
+</h:body>
+
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Locação</title>
+</h:head>
+
+<h:body>
+
+	<h:form style="margin-top:2%; margin-left:2%;">
+		<h1>Locação</h1>
+
+		<h:inputHidden value="#{locacaoBean.locacao.id}" />
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Data Início: " />
+			<h:inputText value="#{locacaoBean.locacao.dataInicio}"
+				converterMessage="Data Inicio Errada!">
+				<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+					timeZone="GMT-03:00" />
+			</h:inputText>
+
+			<h:outputLabel value="Data Fim: " />
+			<h:inputText value="#{locacaoBean.locacao.dataFim}"
+				converterMessage="Data Fim Errada!">
+				<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+					timeZone="GMT-03:00" />
+			</h:inputText>
+
+			<h:outputLabel value="Selecione um funcionário: " />
+			<h:selectOneMenu id="menufunc" value="#{locacaoBean.locacao.funcionario}">
+				<f:selectItems id="selecfunc" value="#{locacaoBean.funcionarios}" var="f" itemLabel="#{f.nome}" itemValue="#{f}" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Selecione um cliente: " />
+			<h:selectOneMenu id="menucliente" value="#{locacaoBean.locacao.cliente}">
+				<f:selectItems id="selcliente" value="#{locacaoBean.clientes}" var="c" itemLable="#{c.nome}" itemValue="#{c}" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Selecione um veículo: " />
+			<h:selectOneMenu id="menuveic" value="#{locacaoBean.locacao.veiculo}">
+				<f:selectItems id="selecveic" value="#{locacaoBean.veiculos}" var="v" itemLabel="#{v.marcaModelo}" itemValue="#{v}" />
+			</h:selectOneMenu>
+
+			<h:commandButton action="#{locacaoBean.salvar()}" value="Salvar" />
+			<h:commandButton action="locacao" value="Cancelar" immediate="true" />
+
+		</h:panelGrid>
+
+	</h:form>
+
+</h:body>
+
+
+</html>
