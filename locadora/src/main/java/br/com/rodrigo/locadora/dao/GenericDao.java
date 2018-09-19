@@ -12,7 +12,6 @@ public abstract class GenericDao<T, I> {
 	}
 
 	protected GenericDao(Class<T> persistedClass) {
-		this();
 		this.persistedClass = persistedClass;
 	}
 
